@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파일명</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>v-if</h1>
+      <article>
+        <h1>1. 인증기만 ui 랜더링</h1>
+        <div v-if="isLofggedIn"></div>
+        <p>홍길동님 입장</p>
+        <button @click></button>
+      </article>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="text/javascript">
+      const { createApp } = Vue;
+
+      let vm = createApp({
+        name: 'App',
+        data() {
+          return {
+            isLoggedIn: true,
+            userMame: '',
+          };
+        },
+        methods: {
+          logout() {
+            this.isLoggedIn = false;
+          },
+          login() {
+            this.isLoggedIn = true;
+          },
+        },
+      });
+      vm.mount('#app');
+    </script>
+  </body>
+</html>

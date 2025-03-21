@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.con,
+.con * {
+  border: 1px solid lightgray;
+}
+.con > li > p {
+  background-color: antiquewhite;
+  padding: 0.5rem;
+}
+.con > li > div {
+  background: lightsalmon;
+  display: none;
+}
+.con > li.active > div {
+  display: block;
+}

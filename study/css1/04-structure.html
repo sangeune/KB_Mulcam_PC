@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>04-structure</title>
+  </head>
+  <body>
+    <h1>04-structure</h1>
+    <style>
+      /* .sample = ul */
+      .test.sample div {
+        border: 1px solid lightgray;
+      }
+      .sample div:first-child {
+        border: 2px solid tomato;
+      }
+      .sample div:first-of-type {
+        border: 2px solid tomato;
+      }
+      .sample div:last-child {
+        border: 2px solid tomato;
+      }
+
+      .sample div:nth-of-type(even) {
+        background-color: lightcyan;
+      }
+    </style>
+    <section class="sample test">
+      <p>추가된요소</p>
+      <div>test1</div>
+      <div>test2</div>
+      <div>test3</div>
+      <div>test4</div>
+      <div>test5</div>
+      <div>test6</div>
+    </section>
+  </body>
+</html>

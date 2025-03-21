@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4class</title>
+    <style>
+      .wrap {
+        width: calc(100vw - 20px);
+        height: calc(100vh - 20px);
+        overflow: hidden;
+        position: relative;
+        border: 1px solid lightgray;
+      }
+      .btn,
+      .side {
+        position: absolute;
+      }
+      .btn {
+        right: 1rem;
+        top: 1rem;
+        padding: 0.5rem;
+        background-color: tomato;
+        border: 0;
+        outline: 0;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        top: calc(1rem + 2px);
+      }
+      .side {
+        right: 1rem;
+        background-color: lightgray;
+        list-style: none;
+        padding: 1rem;
+        margin: 0;
+        width: 200px;
+        /* opacity: 0; */
+        transition: 0.3s;
+        /* z-index: -1; */
+        display: none;
+      }
+      .side.active {
+        display: block;
+        /* right: 1rem; */
+        /* opacity: 1;
+        z-index: 1; */
+      }
+    </style>
+    <script src="./4class.js" defer></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>4class</h1>
+      <button class="btn" on>햄버거</button>
+      <ul class="side">
+        <li><a href="#">리스트</a></li>
+        <li><a href="#">리스트</a></li>
+        <li><a href="#">리스트</a></li>
+        <li><a href="#">리스트</a></li>
+        <li><a href="#">리스트</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

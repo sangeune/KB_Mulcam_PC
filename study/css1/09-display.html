@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>09-display</title>
+  </head>
+  <body>
+    <h1>09-display</h1>
+    <style>
+      .list,
+      .list * {
+        border: 1px solid lightgray;
+      }
+      .list li {
+        padding: 1rem;
+        list-style: none;
+        height: 50px;
+      }
+      .box {
+        width: 50px;
+        height: 50px;
+        background-color: tomato;
+      }
+      .list li:hover .box {
+        background-color: rebeccapurple;
+        display: none;
+      }
+    </style>
+    <ul class="list">
+      <li><div class="box">박스</div></li>
+      <li><div class="box">박스</div></li>
+      <li><div class="box">박스</div></li>
+    </ul>
+  </body>
+</html>
