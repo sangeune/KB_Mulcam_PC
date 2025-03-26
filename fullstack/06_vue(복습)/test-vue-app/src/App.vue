@@ -32,7 +32,7 @@ export default {
         { id: 1, name: 'BTS', checked: true },
         { id: 2, name: 'Black Pink' },
         { id: 3, name: 'EXO' },
-        { id: 4, name: { spacial: 'ITZY' } },
+        { id: 4, name: 'ITZY' },
         // { id: 4, name: 'ITZY' },
         // { id: 1, name: 'BTS', checked: true },
         // { id: 2, name: 'Black Pink', checked: false },
