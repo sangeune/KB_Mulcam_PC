@@ -7,7 +7,6 @@
 </template>
 
 <style scoped>
-/* 앱제목 header */
 .hd {
   background-color: var(--gray700);
   padding: var(--space-l) 0 calc(var(--space-l) * 1.8);

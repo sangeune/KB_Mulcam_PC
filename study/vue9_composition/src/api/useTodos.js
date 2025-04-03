@@ -1,31 +1,29 @@
 import axios from 'axios'
 import { ref } from 'vue'
+
 const API_URL = 'http://localhost:5000/todos'
 
 export const useTodos = () => {
   const todos = ref([])
-  const loading = ref(false)
+  const loadng = ref(false)
   const error = ref(null)
 
   const fetchTodos = async () => {
-    loading.value = true
+    loadng.value = true
     error.value = null
 
-    // 데이터 가져오기
     try {
       // 지연상태 확인
-      // await new Promise(resolve => {
-      //   setTimeout(resolve, 2000)
-      // })
+      // await new Promise(resolve => setTimeout(resolve, 2000))
 
       const response = await axios.get(API_URL)
-      console.log('response---', response)
+      // console.log('response---', response)
       todos.value = response.data
     } catch (err) {
       error.value = err.message || '데이터 요청 중 에러'
       console.error(err)
     } finally {
-      loading.value = false
+      loadng.value = false
     }
   }
 
@@ -33,7 +31,6 @@ export const useTodos = () => {
   const addTodo = async newTodo => {
     try {
       const response = await axios.post(API_URL, newTodo)
-      console.log('response---', response)
       todos.value.push(response.data)
     } catch (err) {
       console.log(err)
@@ -41,26 +38,59 @@ export const useTodos = () => {
   }
 
   // todo 항목 업데이트
-  const updateTodo = async updateTodo => {
+  const updateTodo = async updatedTodo => {
     try {
-      const response = await axios.post(
-        `${API_URL}/${updateTodo.id}`,
+      const response = await axios.put(
+        `${API_URL}/${updatedTodo.id}`,
         updatedTodo,
       )
       console.log('response---', response)
-      if (index === -1) todos.value[index] = updatedTodo.id
+      const index = todos.value.findIndex(todo => todo.id === updatedTodo.id)
+
+      if (index !== -1) todos.value[index] = updatedTodo
     } catch (err) {
       console.log(err)
     }
   }
+
   // todo 리스트 삭제하기
-  const deleteTodo = async todoID => {
+  const deleteTodo = async todoId => {
     try {
-      await axios.delete(`${API_URL}/${todoId}`, updatedTodo)
-      console.log('response---', response)
-      if (index === -1) todos.value[index] = updatedTodo.id
-    } catch (error) {}
+      await axios.delete(`${API_URL}/${todoId}`)
+      todos.value = todos.value.filter(todo => todo.id !== todoId)
+      // return true
+    } catch (err) {
+      console.log(err)
+      // return false
+    }
   }
 
-  return { todos, loading, error, fetchTodos, addTodo, updateTodo, deleteTodo }
+  // 일괄삭제 함수
+  const deleteCompletedTodos = async () => {
+    try {
+      const completedTodos = todos.value.filter(todo => todo.completed)
+
+      const deletePromises = completedTodos.map(todo =>
+        axios.delete(`${API_URL}/${todo.id}`),
+      )
+
+      await Promise.all(deletePromises)
+
+      todos.value = todos.value.filter(todo => !todo.completed)
+    } catch (err) {
+      error.value = err.message || '완료된 항목 삭제 중 오류 발생'
+      console.error('완료된 항목 삭제 중 오류 발생:', err)
+    }
+  }
+
+  return {
+    todos,
+    loadng,
+    error,
+    fetchTodos,
+    addTodo,
+    updateTodo,
+    deleteTodo,
+    deleteCompletedTodos,
+  }
 }

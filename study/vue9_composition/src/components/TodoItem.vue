@@ -6,15 +6,21 @@ const props = defineProps({
     required: true,
   },
 })
-const emit = defineEmits(['update:todo'])
+
+const emit = defineEmits(['update:todo', 'delete:todo'])
+
 const toggleCompleted = () => {
-  // 상태 업데이트 함수
   const updatedTodo = {
     ...props.todo,
     completed: !props.todo.completed,
   }
-  // 업데이트 함수 호출 (updatedTodo)
-  emit('update:todo')
+
+  emit('update:todo', updatedTodo)
+}
+
+const handleDelete = () => {
+  if (!confirm('정말 삭제하시겠습니까?')) return
+  emit('delete:todo', props.todo.id)
 }
 </script>
 
@@ -25,7 +31,7 @@ const toggleCompleted = () => {
     <time>{{
       new Date(parseInt(todo.createdAt)).toISOString().split('T')[0]
     }}</time>
-    <i class="fa fa-trash"></i>
+    <i class="fa fa-trash" @click="handleDelete"></i>
   </li>
 </template>
 

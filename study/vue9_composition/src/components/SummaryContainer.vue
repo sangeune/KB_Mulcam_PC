@@ -1,10 +1,25 @@
-<script setup></script>
+<script setup>
+defineProps(['activeTodoCount', 'completedTodoCount'])
+
+const emit = defineEmits(['delete-completed'])
+
+const handleDeleteCompleted = () => {
+  if (!confirm('완료된 항목을 삭제하시겠습니까?')) return
+  emit('delete-completed')
+}
+</script>
 
 <template>
-  <div class="todo-summary">
-    <p><span>미완료항목</span><span>0</span></p>
-    <p><span>완료항목</span><span>0</span></p>
-    <button>완료된 항목 삭제</button>
+  <div class="todo-summary" v-if="activeTodoCount || completedTodoCount">
+    <p>
+      <span>미완료항목</span><span>{{ activeTodoCount }}</span>
+    </p>
+    <p>
+      <span>완료항목</span><span>{{ completedTodoCount }}</span>
+    </p>
+    <button @click="handleDeleteCompleted" :disabled="completedTodoCount === 0">
+      완료된 항목 삭제
+    </button>
   </div>
 </template>
 

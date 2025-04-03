@@ -4,7 +4,6 @@ const todoText = ref('')
 const emit = defineEmits(['add-todo'])
 
 const addTodo = () => {
-  console.log('실행')
   const timeStamp = Date.now().toString()
 
   const newTodo = {
@@ -13,7 +12,7 @@ const addTodo = () => {
     completed: false,
     createdAt: timeStamp,
   }
-  // 데이터 전송
+
   emit('add-todo', newTodo)
 
   todoText.value = ''

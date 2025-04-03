@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 2rem;
+  color: dodgerblue;
+  padding: 2rem 0;
+  border: 1px solid lightgray;
+}
+h3 {
+  color: lightcoral;
+  padding: 2rem 0;
+  border: 1px solid lightgray;
+}
+
+section {
+  border: 1px solid lightseagreen;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+article {
+  border: 3px solid lightcoral;
+  padding: 1rem;
+  margin: 1rem 0;
+}
